@@ -22,6 +22,14 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+}
+
+
+/**
+ * codes used in certain parts of the course
+ */
 //        buttonDetail.setOnClickListener {
 //            /**
 //             * [Navigation] component created these actions to be used by the programmer.
@@ -33,8 +41,3 @@ class ListFragment : Fragment() {
 //            action.dogUid = 5
 //            Navigation.findNavController(it).navigate(action)
 //        }
-
-
-    }
-
-}
