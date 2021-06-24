@@ -44,6 +44,7 @@ class ListViewModel : ViewModel() {
                         dogsLoadError.value = false
                         loading.value = false
                     }
+
                     override fun onError(e: Throwable) { //what do we do on failure.
                         dogsLoadError.value = true
                         loading.value = false

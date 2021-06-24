@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.saheralsous.dogs.R
+import com.saheralsous.dogs.Util.getProgressDrawable
+import com.saheralsous.dogs.Util.loadImage
 import com.saheralsous.dogs.model.DogBreed
 import kotlinx.android.synthetic.main.item_dog.view.*
 
@@ -41,6 +43,14 @@ class DogsListAdapter : RecyclerView.Adapter<DogsListAdapter.DogViewHolder>() {
         holder.itemView.setOnClickListener {
             Navigation.findNavController(it).navigate(ListFragmentDirections.actionDetailFragment())
         }
+        /**
+         * loading image using the ImageView Extension
+         */
+        holder.itemView.image_view.loadImage(dogsList[position].imageUrl, getProgressDrawable(holder.itemView.image_view.context))
+        /**
+         * getting the context from the image_view context.
+         * we removed the old image because we assigned the loading spinner instead inside the Util.
+         */
     }
 
     override fun getItemCount(): Int {
