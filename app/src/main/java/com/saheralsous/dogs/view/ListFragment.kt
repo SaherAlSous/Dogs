@@ -45,6 +45,19 @@ class ListFragment : Fragment() {
             adapter = dogsListAdapter
         }
 
+        /**
+         * creating a refresh process
+         */
+        refresh_layout.setOnRefreshListener {
+            dogs_list.visibility =View.GONE
+            list_error.visibility = View.GONE
+            loading_view.visibility = View.VISIBLE
+            viewModel.refresh()
+            refresh_layout.isRefreshing = false
+
+
+        }
+
         observerViewModel()
 
     }
