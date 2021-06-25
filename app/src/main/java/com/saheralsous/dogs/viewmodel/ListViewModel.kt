@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.saheralsous.dogs.model.DogBreed
 import com.saheralsous.dogs.model.DogDatabase
 import com.saheralsous.dogs.model.DogsApiService
+import com.saheralsous.dogs.util.NotificationsHelper
 import com.saheralsous.dogs.util.SharedPreferencesHelper
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -87,6 +88,10 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                             "Dogs retrieved from endPoint",
                             Toast.LENGTH_SHORT
                         ).show()
+                        /**
+                         * run the notification once the list of dogs are recieved from API
+                         */
+                        NotificationsHelper(getApplication()).createNotification()
 
                     }
 
