@@ -15,6 +15,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
+import java.lang.Exception
+import java.lang.NumberFormatException
 
 class ListViewModel(application: Application) : BaseViewModel(application) {
     /** we extend it to [BaseViewModel]
@@ -42,6 +44,11 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
 
     fun refresh() {
         /**
+         * check the preferences cache duration value
+         */
+        checkCacheDuration()
+
+        /**
          * over here we decide if we refresh or get info from API
          */
         val updateTime = prefHelper.getUpdateTime()
@@ -50,6 +57,17 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             fetchFromDatabase()
         } else {
             fetchFromRemote()
+        }
+    }
+
+    private fun checkCacheDuration(){ //video 58
+        val cachePreference = prefHelper.getCacheDuration()
+        try {
+            val cachePreferenceInt = cachePreference?.toInt() ?: 5 * 60 // we set the value in seconds that is why we need to convert them to minutes
+            refreshTime = cachePreferenceInt.times(1000 * 1000 * 1000L) //updating the settings based on the value set by user
+
+        }catch (e : NumberFormatException){
+            e.printStackTrace()
         }
     }
 

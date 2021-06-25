@@ -1,12 +1,11 @@
 package com.saheralsous.dogs.view
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.saheralsous.dogs.R
 import com.saheralsous.dogs.viewmodel.ListViewModel
@@ -33,6 +32,10 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /**
+         * enabling the menu
+         */
+        setHasOptionsMenu(true)
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.refresh()
@@ -88,6 +91,28 @@ class ListFragment : Fragment() {
           }
         )
     }
+
+    /**
+     * creating the menu and setting it
+     * video 58
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.action_settingsFragment -> {
+                view?.let{
+                    Navigation.findNavController(it).navigate(ListFragmentDirections.actionSettingsFragment())
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
 
 

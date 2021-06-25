@@ -40,4 +40,9 @@ class SharedPreferencesHelper { //video 41
 
     fun getUpdateTime() = prefs?.getLong(PREF_TIME, 0) ?: 0 //function was created automatically in this class.
 
+    /**
+     * retrieve the information that user has set in the preferences, to validate it and update the settings
+     */
+    fun getCacheDuration() = prefs?.getString("pref_cache_duration", "") // this key has been set inside Preferences XML
+
 }
