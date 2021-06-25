@@ -47,3 +47,13 @@ data class DogBreed(
  * creating a class for palette
  */
 data class DogPalette(var color : Int)
+
+/**
+ * Creating SMS info class to use it in dialog layout = video 63
+ */
+
+data class SmsInfo(
+    var to : String,
+    var text : String,
+    var imageUrl : String?
+)

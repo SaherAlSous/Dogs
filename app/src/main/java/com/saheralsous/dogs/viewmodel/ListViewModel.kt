@@ -149,11 +149,9 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
 //            dogList.forEach {
 //                dogList[0].uuid = result[0].toInt()
 //            }
-            var i = 0
-             while (i < dogList.size) {
-                 dogList[i].uuid = result[i].toInt()
-                 i++
-             }
+            dogList.forEach { dogBreed ->
+                dogBreed.uuid = result[0].toInt()
+            }
             /**
              * var i = 0
              * while (i < doglist.size){
@@ -163,19 +161,16 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
              */
             dogsRetrieved(dogList)
         }
-
         /**
          * saving the information of the moment when we have updated the database with the dog info we retrieved.
          * we will use this info when we retrieve or refresh the datalist
          */
         prefHelper.saveUpdateTime(System.nanoTime())
     }
-
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
     }
-
 }
 
 

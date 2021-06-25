@@ -10,6 +10,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.saheralsous.dogs.R
 
 /**
+ * request code to send with permission request for SMS in [requestSmsPermission]
+ */
+const val PERMISSION_SEND_SMS = 123
+
+/**
  * extending imageview with KTX to create a spinner image while the actual image is being loaded
  */
 
