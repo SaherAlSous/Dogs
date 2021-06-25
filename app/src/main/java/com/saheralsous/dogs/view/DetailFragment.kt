@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.saheralsous.dogs.R
+import com.saheralsous.dogs.util.getProgressDrawable
+import com.saheralsous.dogs.util.loadImage
 import com.saheralsous.dogs.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -22,7 +24,6 @@ class DetailFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
@@ -35,6 +36,8 @@ class DetailFragment : Fragment() {
         arguments?.let {
             dogUuid = DetailFragmentArgs.fromBundle(it).dogUid
         }
+        viewModel.fetch(dogUuid)
+
         observerViewModel()
     }
 
@@ -46,6 +49,7 @@ class DetailFragment : Fragment() {
                 dog_purpose.text = dog.bredFor
                 dog_Temperament.text = dog.temperament
                 dog_lifespan.text = dog.LifeSpan
+                dog_image.loadImage(dog.imageUrl, getProgressDrawable(dog_image.context))
             }
         )
     }

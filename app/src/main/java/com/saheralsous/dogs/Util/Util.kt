@@ -1,4 +1,5 @@
-package com.saheralsous.dogs.Util
+package com.saheralsous.dogs.util
+
 
 import android.content.Context
 import android.widget.ImageView

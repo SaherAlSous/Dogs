@@ -46,16 +46,14 @@ class ListFragment : Fragment() {
         }
 
         /**
-         * creating a refresh process
+         * creating a refresh process (getting it from cache this time)
          */
         refresh_layout.setOnRefreshListener {
             dogs_list.visibility =View.GONE
             list_error.visibility = View.GONE
             loading_view.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.refreshByPassCache()
             refresh_layout.isRefreshing = false
-
-
         }
 
         observerViewModel()
@@ -67,7 +65,7 @@ class ListFragment : Fragment() {
         Observer { dogs ->
             dogs?.let {
                 dogs_list.visibility = View.VISIBLE
-                dogsListAdapter?.updateDogList(dogs)
+                dogsListAdapter.updateDogList(dogs)
             }
         })
         viewModel.dogsLoadError.observe(viewLifecycleOwner,
@@ -90,7 +88,6 @@ class ListFragment : Fragment() {
           }
         )
     }
-
 }
 
 
