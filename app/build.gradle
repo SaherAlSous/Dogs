@@ -18,6 +18,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -90,5 +92,12 @@ dependencies {
     implementation("androidx.preference:preference-ktx:$preferencesVersion")
 
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+
+    /**
+     * implementing MultiDex when the app exceeds its maximum methods (65k) number.
+     * also adding multiDexEnabled true in android configurations
+     * and in Manifest Multidex
+     */
+    implementation("androidx.multidex:multidex:2.0.1")
 
 }
